@@ -280,6 +280,7 @@ roleRef:
   name: leader-locking-nfs-client-provisioner
   apiGroup: rbac.authorization.k8s.io
 ```
+```kubectl apply -f rbac.yaml```
   
 创建storageclass(class.yaml)
 ```apiVersion: storage.k8s.io/v1
@@ -292,7 +293,8 @@ provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # or choose another nam
 parameters:
   archiveOnDelete: "false"
 ```
-  
+```kubectl apply -f class.yaml```
+
 创建deployment.yaml
 ```
 apiVersion: apps/v1
@@ -335,8 +337,9 @@ spec:
             server: 172.16.30.247
             path: /opt/share
 ```
+```kubectl apply -f deployment.yaml```
 
-创建PVC
+创建PVC(test-claim.yaml)
 ```
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -348,8 +351,9 @@ spec:
     - ReadWriteMany
   resources:
     requests:
-      storage: 500Mi```
+      storage: 500Mi
 ``` 
+```kubectl apply -f test-claim.yaml```
 
 
 
