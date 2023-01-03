@@ -4,7 +4,7 @@
 systemctl unmask nginx
 ```
 
-###安装基础环境依赖（若需要全离线安装则提前准备好离线包）
+### 安装基础环境依赖（若需要全离线安装则提前准备好离线包）
 
 ```bash
 sudo apt-get install gcc
@@ -13,9 +13,9 @@ sudo apt-get install zlib1g-dev
 sudo apt-get install openssl libssl-dev
 ```
 
-###准备好源码包`nginx-1.23.2.tar.gz`
+### 准备好源码包`nginx-1.23.2.tar.gz`
 
-###示例扔到/opt目录
+### 示例扔到/opt目录
 
 ```bash
 cd /opt/
@@ -25,13 +25,13 @@ ls
 mkdir /var/temp/nginx -p
 ```
 
-###加入依赖配置
+### 加入依赖配置
 
 ```bash
 ./configure     --prefix=/usr/local/nginx     --pid-path=/var/run/nginx/nginx.pid     --lock-path=/var/lock/nginx.lock     --error-log-path=/var/log/nginx/error.log     --http-log-path=/var/log/nginx/access.log     --with-http_gzip_static_module     --http-client-body-temp-path=/var/temp/nginx/client     --http-proxy-temp-path=/var/temp/nginx/proxy     --http-fastcgi-temp-path=/var/temp/nginx/fastcgi     --http-uwsgi-temp-path=/var/temp/nginx/uwsgi     --http-scgi-temp-path=/var/temp/nginx/scgi  --with-http_stub_status_module --with-http_ssl_module
 ```
 
-###编译安装
+### 编译安装
 
 ```bash
 make && make install
@@ -56,7 +56,7 @@ ps -ef |grep nginx
 pkill -9 nginx
 ```
 
-###将nginx加入systemctl管理
+### 将nginx加入systemctl管理
 
 ```bash
 sudo vi /usr/lib/systemd/system/nginx.service
