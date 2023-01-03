@@ -87,27 +87,15 @@ db.test.save({
 
 AND条件：
 
-`db.test.find({key1:value1, key2:value2}).pretty()`
+```db.test.find({key1:value1, key2:value2}).pretty()```
 
 OR条件：
 
-`db.test.find(`
-
-`{`
-
-`$or: [`
-
-`{key1: value1}, {key2:value2}`
-
-`]`
-
-`}).pretty()`
+```db.test.find({$or: [{key1: value1}, {key2:value2}]}).pretty()```
 
 **AND和OR联合使用**
 
-类似常规 SQL 语句为： `'where likes>50 AND (by = 'ssj' OR title = 'MongoDB')'`
-
-`db.test.find({"likes": {$gt:50}, $or: [{"by": "ssj"},{"title": "MongoDB"}]}).pretty()`
+类似常规 SQL 语句为： ```'where likes>50 AND (by = 'ssj' OR title = 'MongoDB')'db.test.find({"likes": {$gt:50}, $or: [{"by": "ssj"},{"title": "MongoDB"}]}).pretty()```
 
 结果：
 ```{
