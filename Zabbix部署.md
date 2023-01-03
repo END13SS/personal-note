@@ -137,3 +137,8 @@ systemctl enable zabbix-agent2
 [https://www.zabbix.com/cn/download_agents](https://www.zabbix.com/cn/download_agents)
 
 修改配置文件后，关闭防火墙，允许防火墙通过zabbix_agentd.exe
+
+```#注意用管理员启动cmd终端
+zabbix_agentd.exe --config zabbix_agentd.conf --install
+zabbix_agentd.exe --config zabbix_agentd.conf --start
+```
