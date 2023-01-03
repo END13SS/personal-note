@@ -1,2 +1,1 @@
-# personal-note
-Just for study and sharing
+ubuntu20.04LTS源码编译安装nginx
