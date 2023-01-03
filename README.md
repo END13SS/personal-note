@@ -3,3 +3,5 @@
 [MongoDB常用命令](./mongo常用命令.md)
 
 [docker常用命令](./docker常用命令.md)
+
+[Zabbix部署](./Zabbix部署.md)
