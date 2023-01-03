@@ -213,7 +213,8 @@ sudo vim /etc/fstab
 ## K3s使用nfs作为PVC储存卷
 创建rbac.yaml
 
-```apiVersion: v1
+```
+apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nfs-client-provisioner
@@ -277,10 +278,11 @@ subjects:
 roleRef:
   kind: Role
   name: leader-locking-nfs-client-provisioner
-  apiGroup: rbac.authorization.k8s.io```
+  apiGroup: rbac.authorization.k8s.io
+```
   
-  创建storageclass(class.yaml)
-  ```apiVersion: storage.k8s.io/v1
+创建storageclass(class.yaml)
+```apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
   name: managed-nfs-storage
@@ -288,10 +290,12 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: k8s-sigs.io/nfs-subdir-external-provisioner # or choose another name, must match deployment's env PROVISIONER_NAME'
 parameters:
-  archiveOnDelete: "false"```
+  archiveOnDelete: "false"
+```
   
 创建deployment.yaml
-  ```apiVersion: apps/v1
+```
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nfs-client-provisioner
@@ -329,10 +333,12 @@ spec:
         - name: nfs-client-root
           nfs:
             server: 172.16.30.247
-            path: /opt/share```
+            path: /opt/share
+```
 
 创建PVC
-```kind: PersistentVolumeClaim
+```
+kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: test-claim
@@ -343,7 +349,7 @@ spec:
   resources:
     requests:
       storage: 500Mi```
- 
+``` 
 
 
 
