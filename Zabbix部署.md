@@ -28,7 +28,7 @@ mysql> quit;
 导入初始架构和数据，系统将提示您输入新创建的密码。
 
 ```bash
-zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbixDisable log_bin_trust_function_creators option after importing database schema.
+zcat /usr/share/zabbix-sql-scripts/mysql/server.sql.gz | mysql --default-character-set=utf8mb4 -uzabbix -p zabbix
 ```
 
 Disable log_bin_trust_function_creators option after importing database schema.
@@ -43,7 +43,12 @@ mysql> quit;
 **为Zabbix server配置数据库**
 
 编辑配置文件 /etc/zabbix/zabbix_server.conf 
+```
+DBPassword=password
+```
+**为Zabbix前端配置PHP**
 
+编辑配置文件 **/etc/zabbix/nginx.conf** uncomment and set 'listen' and 'server_name' directives.
 ```bash
 listen 8080;
 server_name example.com;
@@ -68,6 +73,12 @@ systemctl enable zabbix-server zabbix-agent nginx php7.4-fpm
 账号：Admin
 
 密码：zabbix
+```
+
+若无法选择简体中文，则服务器需要安装中文语言包后重启
+```
+sudo apt-get install language-pack-zh-hans
+sudo reboot
 ```
 
 ### 修改中文字体
@@ -97,10 +108,10 @@ define('ZBX_FONT_NAME', 'msyh');
 ```
 
 ```bash
-sed -i "s/graphfont/[要替换的文件名]/" /usr/share/zabbix/include/defines.inc.php
-sed -i "s/graphfont/msyh/" /usr/share/zabbix/include/defines.inc.php   
+#sed -i "s/graphfont/[要替换的文件名]/" /usr/share/zabbix/include/defines.inc.php
 #命令示例，替换为msyh，注意这个地方的文件名是不加.ttf
 #可以使用sed命令一键替换，替换完成刷新zabbix页面
+sed -i "s/graphfont/msyh/" /usr/share/zabbix/include/defines.inc.php   
 ```
 
 ## ubuntu agent2部署
@@ -121,6 +132,14 @@ apt-get update
 apt install zabbix-agent2 zabbix-agent2-plugin-*
 ```
 
+修改配置文件
+```
+vim /etc/zabbix/zabbix_agent2.conf
+```
+其中Server=server_ip
+ServerActive=server_ip
+Hostname=server_hostname
+
 **Start Zabbix agent2 process**
 
 Start Zabbix agent2 process and make it start at system boot.
@@ -136,7 +155,7 @@ systemctl enable zabbix-agent2
 
 [https://www.zabbix.com/cn/download_agents](https://www.zabbix.com/cn/download_agents)
 
-修改配置文件后，关闭防火墙，允许防火墙通过zabbix_agentd.exe
+同上方式修改配置文件后，关闭防火墙，允许防火墙通过zabbix_agentd.exe
 
 ```#注意用管理员启动cmd终端
 zabbix_agentd.exe --config zabbix_agentd.conf --install
