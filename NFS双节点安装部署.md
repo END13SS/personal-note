@@ -1,17 +1,18 @@
 ## Intallation
 
 ### NFS server
-
+安装并启动服务
 ```bash
 sudo apt install nfs-kernel-server
 sudo systemctl start nfs-kernel-server
 ```
-
+创建共享存储文件夹，并给予权限
 ```bash
 sudo mkdir /opt/share
 sudo chmod -R 777 /opt/share
 ```
-
+NFS服务的配置文件为 /etc/exports，这个文件是NFS的主要配置文件，不过系统并没有默认值，
+所以这个文件不一定会存在，可能要使用vim手动建立，然后在文件里面写入配置内容。
 ```bash
 sudo vim /etc/exports
 ```
@@ -19,24 +20,31 @@ sudo vim /etc/exports
 for example:
 
 ```bash
-/opt/share *(rw,sync,no_root_squash,no_subtree_check)
+/opt/share *(rw,sync,no_root_squash,no_subtree_check,no_all_squash,insecure)
 ```
+rw：设置输出目录读写。
+sync：将数据同步写入内存缓冲区与磁盘中，效率低，但可以保证数据的一致性。
+no_root_squash：不将root用户及所属组都映射为匿名用户或用户组。
+no_subtree_check：即使输出目录是一个子目录，nfs服务器也不检查其父目录的权限，这样可以提高效率。
+no_all_squash：不将远程访问的所有普通用户及所属组都映射为匿名用户或用户组
+insecure：允许客户端从大于1024的tcp/ip端口连接服务器。
 
+使修改生效
 ```bash
 sudo exportfs -a
 ```
 
 ### NFS client
-
+安装nfs client
 ```bash
 sudo apt install nfs-common
 ```
-
+创建共享存储文件夹，并给予权限
 ```bash
 sudo mkdir /opt/share
 sudo chmod -R 777 /opt/share
 ```
-
+挂载共享目录到nfs server服务器的ip下
 ```bash
 sudo mount 172.16.30.240:/opt/share /opt/share
 ```
