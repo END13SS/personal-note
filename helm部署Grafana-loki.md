@@ -1,15 +1,14 @@
 ### 离线安装Helm
 https://github.com/helm/helm/releases
-
 ```bash
 cd /opt/helm
 tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
-mv linux-amd64/helm /usr/local/bin/helm```
-
+mv linux-amd64/helm /usr/local/bin/helm
+```
 查看helm版本
-
 ```bash
-helm version```
+helm version
+```
 
 Helm安装chart需要kube config，直接复制k3s.yaml生成kube config
 
