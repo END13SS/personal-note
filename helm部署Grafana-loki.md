@@ -11,27 +11,32 @@ helm version
 ```
 
 Helm安装chart需要kube config，直接复制k3s.yaml生成kube config
-
-```cd /root #k3s安装时用户主目录
+```bash
+cd /root #k3s安装时用户主目录
 sudo cp /etc/rancher/k3s/k3s.yaml .kube/config
-sudo chmod +rw .kube/config```
-
+sudo chmod +rw .kube/config
+```
 ### 安装Loki、Grafana、promtail
 创建namespace
-
-```kubectl create ns loki```
-
+```bash
+kubectl create ns loki
+```
 helm添加repo仓库
-
-```helm repo add grafana https://grafana.github.io/helm-charts```
+```bash
+helm repo add grafana https://grafana.github.io/helm-charts
+```
 
 更新repo仓库
 
-```helm repo update```
+```bash
+helm repo update
+```
 
 helm安装loki、grafana和promtail
 
-```helm upgrade --install loki grafana/loki-stack --namespace=loki --set grafana.enabled=true```
+```
+helm upgrade --install loki grafana/loki-stack --namespace=loki --set grafana.enabled=true
+```
 
 等待安装
 ![image](https://user-images.githubusercontent.com/89510761/220135263-622fda85-b5de-4ddc-93de-0cff9e0334e9.png)
@@ -42,18 +47,24 @@ helm安装loki、grafana和promtail
 安装成功
 ![image](https://user-images.githubusercontent.com/89510761/220135343-57f816bb-ef48-4c88-a7fc-a7f9f86b55f3.png)
 
-```kubectl -n loki get all```
+```
+kubectl -n loki get all
+```
 ![image](https://user-images.githubusercontent.com/89510761/220135363-f8765471-5444-4a9f-9b75-311064daebb9.png)
 
 可以看到pod正在创建中，稍等片刻
 在等待的过程中可以修改下loki-grafana的端口暴露方式
 
-```kubectl -n loki edit svc loki-grafana```
+```
+kubectl -n loki edit svc loki-grafana
+```
 ![image](https://user-images.githubusercontent.com/89510761/220135407-61cdc8af-c0b4-4244-a000-d43e8af2db00.png)
 
 如上图，增加红色框中的内容，修改黄色框中的内容，保存并退出
 
-```kubectl -n loki get svc```
+```
+kubectl -n loki get svc
+```
 
 确认修改已生效
 ![image](https://user-images.githubusercontent.com/89510761/220135575-840294cb-14de-482f-96f0-e3f1d8134c77.png)
