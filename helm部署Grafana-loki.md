@@ -62,13 +62,11 @@ kubectl -n loki edit svc loki-grafana
 
 如上图，增加红色框中的内容，修改黄色框中的内容，保存并退出
 
+确认修改已生效
 ```
 kubectl -n loki get svc
 ```
 ![image](https://user-images.githubusercontent.com/89510761/220135575-840294cb-14de-482f-96f0-e3f1d8134c77.png)
-
-确认修改已生效
-
 
 确保pod已running
 ![image](https://user-images.githubusercontent.com/89510761/220135611-e4895a8b-23ee-439e-bf1c-234db45e4100.png)
