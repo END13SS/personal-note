@@ -1,4 +1,4 @@
-#离线安装Helm
+# 离线安装Helm
 https://github.com/helm/helm/releases
 
 ```cd /opt/helm
