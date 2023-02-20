@@ -3,29 +3,22 @@ https://github.com/helm/helm/releases
 
 ```cd /opt/helm
 tar -zxvf helm-v3.10.2-linux-amd64.tar.gz
-mv linux-amd64/helm /usr/local/bin/helm
-```
+mv linux-amd64/helm /usr/local/bin/helm```
 查看helm版本
-```helm version
-```
+```helm version```
 Helm安装chart需要kube config，直接复制k3s.yaml生成kube config
 ```cd /root #k3s安装时用户主目录
 sudo cp /etc/rancher/k3s/k3s.yaml .kube/config
-sudo chmod +rw .kube/config
-```
+sudo chmod +rw .kube/config```
 安装Loki、Grafana、promtail
 创建namespace
-```kubectl create ns loki
-```
+```kubectl create ns loki```
 helm添加repo仓库
-```helm repo add grafana https://grafana.github.io/helm-charts
-```
+```helm repo add grafana https://grafana.github.io/helm-charts```
 更新repo仓库
-```helm repo update
-```
+```helm repo update```
 helm安装loki、grafana和promtail
-```helm upgrade --install loki grafana/loki-stack --namespace=loki --set grafana.enabled=true
-```
+```helm upgrade --install loki grafana/loki-stack --namespace=loki --set grafana.enabled=true```
 等待安装
 [图片]
 若出现以下报错则需要重复运行几次
