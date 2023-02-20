@@ -58,16 +58,17 @@ kubectl -n loki get all
 ```
 kubectl -n loki edit svc loki-grafana
 ```
-![image](https://user-images.githubusercontent.com/89510761/220135407-61cdc8af-c0b4-4244-a000-d43e8af2db00.png)
+![image](https://user-images.githubusercontent.com/89510761/220137428-f3bc8b2e-5135-47f8-b09d-f49089c72cc9.png)
 
 如上图，增加红色框中的内容，修改黄色框中的内容，保存并退出
 
 ```
 kubectl -n loki get svc
 ```
+![image](https://user-images.githubusercontent.com/89510761/220135575-840294cb-14de-482f-96f0-e3f1d8134c77.png)
 
 确认修改已生效
-![image](https://user-images.githubusercontent.com/89510761/220135575-840294cb-14de-482f-96f0-e3f1d8134c77.png)
+![image](https://user-images.githubusercontent.com/89510761/220137471-4eaa4011-c97c-4c16-971c-22610ea10e8a.png)
 
 确保pod已running
 ![image](https://user-images.githubusercontent.com/89510761/220135611-e4895a8b-23ee-439e-bf1c-234db45e4100.png)
