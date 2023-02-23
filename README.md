@@ -7,3 +7,5 @@
 [Zabbix部署](./Zabbix部署.md)
 
 [NFS双节点安装部署](./NFS双节点安装部署.md)
+
+[Nginx的几种负载均衡算法](./Nginx的几种负载均衡算法.md)
