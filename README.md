@@ -11,3 +11,5 @@
 [Nginx的几种负载均衡算法](./Nginx的几种负载均衡算法.md)
 
 [helm部署Grafana-loki](./helm部署Grafana-loki.md)
+
+[K3s节点亲和调度](./K3s节点亲和调度.md)
