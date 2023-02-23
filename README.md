@@ -9,3 +9,5 @@
 [NFS双节点安装部署](./NFS双节点安装部署.md)
 
 [Nginx的几种负载均衡算法](./Nginx的几种负载均衡算法.md)
+
+[helm部署Grafana-loki](./helm部署Grafana-loki.md)
